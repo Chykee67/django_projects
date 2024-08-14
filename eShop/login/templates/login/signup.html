@@ -1,0 +1,16 @@
+<hi>New User Sign Up</hi>
+
+<p><i>{% if error_message %} {{ error_message }} {% endif %} </i></p>
+
+<form action="{% url 'login:create_user' %}" method="post">
+
+    {% csrf_token %}
+
+    <p><i>Please enter your details as they apply below:</i></p>
+
+    {{form}}
+
+    <p><button type="submit">Create User</button></p>
+</form>
+
+<p><i><a href="{% url 'login:sign_in' %}">Already have an account? Sign in</a></i></p>

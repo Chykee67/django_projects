@@ -1,0 +1,14 @@
+<h1>Sign in</h1>
+
+{% if error_message %} {{error_message}} {% endif %}
+
+<form action="{% url 'login:auth_user' %}" method="post">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button type="submit">Sign in</button>
+</form>
+
+<p><i>Don't have an account? <a href="{% url 'login:sign_up' %}">Create one here.</a></i></p>

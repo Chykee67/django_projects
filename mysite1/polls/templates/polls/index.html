@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<h1>Questions To Vote On</h1>
+<!this code describes a template for the index page defined by views.index in polls/views.py-->
+{%if latest%}
+    <ul>
+        {%for quest in latest%}
+        <! this creates links to detail pages for each question defined by views.Details-->
+            <li><a href = "{% url 'polls:detail' quest.id %}">{{quest.question_text}}</a></li>
+        {%endfor%}
+    </ul>
+{%else%}
+    <p>No polls are available.</p>
+{%endif%}
