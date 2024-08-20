@@ -9,6 +9,10 @@ class Category(models.Model):
         max_length=32,
         )
 
+    def __str__(self):
+        return self.decsription
+        
+
 class Subcategory(models.Model):
 
     """ Class defining subcategories of objects """
@@ -21,6 +25,9 @@ class Subcategory(models.Model):
         Category,
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return self.decsription
 
 
 class Item(models.Model):
@@ -38,6 +45,9 @@ class Item(models.Model):
     price = models.IntegerField() #Use MinValueValidator here
 
     quantity = models.IntegerField()
+
+    def __str__(self):
+        return self.description
 
 
 

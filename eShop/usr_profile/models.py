@@ -1,10 +1,13 @@
+from datetime import timedelta
+
 from django.db import models
+from django.utils import timezone
 
 from login.models import User
 from store.models import Item
 
 
-class UserCart(models.Model):
+class UserItem(models.Model):
 
     """ Model for user cart """
 
@@ -19,7 +22,7 @@ class UserCart(models.Model):
     )
     
     def __str__(self):
-        return f"{self.user}'s cart"
+        return self.item
     
     @classmethod
     def add_to_cart(cls, user, item):
@@ -28,7 +31,29 @@ class UserCart(models.Model):
             item=Item.objects.get(description=item)
             )
 
+
+class Order(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+    )
+
+    quantity = models.IntegerField()
     
+    order_creation_date = models.DateTimeField(
+        date = timezone.now(),
+    )
+
+    expected_delivery_date = models.DateTimeField(
+        date = timezone.now() + timedelta(days=7)
+    )
+
     #try to use generatedfield from django.models here to calculate the total worth of items in the cart
 
 #try to use classmethods, static methods and instance methods here
