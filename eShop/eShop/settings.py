@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'eShop',
     'login',
     'usr_profile',
+    'store',
 ]
 
 MIDDLEWARE = [

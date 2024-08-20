@@ -27,14 +27,3 @@ class User(models.Model):
 
     def __str__(self):
         return self.user_name
-
-class Cart(models.Model):
-    ...
-    #try to use generatedfield from django.models here to calculate the total worth of items in the cart
-
-class Section(models.Model):
-    ...
-
-class Item(models.Model):
-    ...
-# Create your models here.
