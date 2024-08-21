@@ -47,12 +47,26 @@ class Order(models.Model):
     quantity = models.IntegerField()
     
     order_creation_date = models.DateTimeField(
-        date = timezone.now(),
+        timezone.now(),
     )
 
     expected_delivery_date = models.DateTimeField(
-        date = timezone.now() + timedelta(days=7)
+        timezone.now() + timedelta(days=7)
     )
+
+
+class Notification(models.Model):
+
+    message = models.TextField(
+        max_length = 300,
+    )
+
+    message_sent_date = models.DateTimeField(timezone.now())
+
+
+    def __str__(self):
+        return self.message
+
 
     #try to use generatedfield from django.models here to calculate the total worth of items in the cart
 

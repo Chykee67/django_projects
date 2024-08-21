@@ -1,2 +1,18 @@
-<p>Upload Profile Pic here</p>
+<p><h1>Welcome to your profile, {{user}} {{flag}}</h1></p>
+
+<p><h2>Upload Profile Pic here</h2></p>
+
+<p>
+    {{notification_count}} <a href="{% url 'usr_profile:notifications' user.user_name %}">Messages</a>
+</p>
+
+<ul>
+    <li>
+        <a href="{% url 'usr_profile:usercart' user.user_name %}">Shopping Cart</a>
+    </li>
+
+    <li>
+        <a href="{% url 'usr_profile:userorders' user.user_name %}">Your Orders</a>
+    </li>
+</ul>
 

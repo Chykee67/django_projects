@@ -1,0 +1,12 @@
+{% if cart %}
+    <ul>
+        {% for item in cart %}
+            <li>
+                <p>{{item}}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Your Cart is Empty </p>
+    <p><i><a href="">Want to see some interesting recommendations?</a></i></p>
+{% endif %}
