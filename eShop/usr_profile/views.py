@@ -33,6 +33,7 @@ def CartView(request, user_name):
 
     return render(request, 'usr_profile/cartview.html', {
         'cart': cart,
+        'user_name': user_name,
     })
 
 def OrdersView(request, user_name):

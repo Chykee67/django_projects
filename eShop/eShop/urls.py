@@ -25,4 +25,5 @@ urlpatterns = [
     path('', views.Home, name='home'),
     path('login/', include("login.urls")),
     path('usr_profile/', include('usr_profile.urls')),
+    path('store/', include('store.urls')),
 ]
