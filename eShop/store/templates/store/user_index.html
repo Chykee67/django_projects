@@ -1,1 +1,14 @@
-<h1>Welcome to user index</h1>
+<h1>We're glad to be your guide on this tour {{user.user_name}} {{cheers}}</h1>
+
+<p><h2>Check out our eye watering shopping <a href="">categories</a></h2></p>
+<p><i>...filled with the goodies you crave</i></p>
+
+{% if categories %}
+    <ul>
+        {% for category in categories %}
+            <li><a href="">{{category.description}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>We are still working tirelessly to bring our amazing categories of items to you...</p>
+{% endif %}
