@@ -10,7 +10,7 @@ class Category(models.Model):
         )
 
     def __str__(self):
-        return self.decsription
+        return self.description.title()
         
 
 class Subcategory(models.Model):
@@ -27,7 +27,7 @@ class Subcategory(models.Model):
     )
 
     def __str__(self):
-        return self.decsription
+        return self.description.title()
 
 
 class Item(models.Model):
@@ -47,7 +47,7 @@ class Item(models.Model):
     quantity = models.IntegerField()
 
     def __str__(self):
-        return self.description
+        return self.description.title()
 
 
 
