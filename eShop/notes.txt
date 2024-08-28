@@ -1,0 +1,72 @@
+login view plan
+
+use create_user to create user with attributes:
+- username
+- password
+- email
+- first_name
+- last_name
+
+User.objects.create_user(user attributes)
+
+create a form that collects these details from the user during sign up -- edit SignUpForm
+
+enable changing password using set_password:
+u = User.objects.get(username="john")
+u.set_password('new password')
+u.save()
+
+
+alternatively use authentication views and builtin forms to handle password changes
+
+TO WATCH NEXT:
+- GROUPS AND USER PERMISSIONS IN DJANGO
+- ASYNCHRONOUS VIEWS IN DJANGO
+
+HOW TO USE SESSIONS IN DJANGO (3.3.8)
+
+TO CARRY OUT ACTIONS FOR LOGGED IN OR NOT LOGGED IN USERS USING DJANGO SESSIONS:
+for regular views:
+    if request.user.is_authenticated:
+        .... (for logged in user)
+    else:
+        .... (for anonymous user)
+
+for asyn views:
+    user = await request.auser()
+
+    if user.is_authenticated:
+        ... (for logged in user)
+    else:
+        ... (for anonymous user)
+
+
+How to log a user in:
+
+from django.contrib.auth import authenticate, login, logout
+
+def my_view(request):
+
+    username = request.POST['username']
+    password = request.POST['password']
+
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+        login(request, user)
+        #redirect to a success page
+
+    else:
+        #return an error message
+
+def logout_view(request):
+    logout(request)
+    #redirect to a success page.
+
+for async views use aauthenticate and alogin()
+
+login(request, user, backend=None) -- find details of the back end.
+    checkout AUTHENTICATION_BACKENDS IN seetings.py
+
+
+stopped at page 532.
