@@ -14,6 +14,7 @@ class SignInForm(forms.Form):
         initial='Password',
         min_length=8,
         max_length=32,
+        widget=forms.PasswordInput,
         )
 
 class SignUpForm(forms.Form):
@@ -37,6 +38,7 @@ class SignUpForm(forms.Form):
         initial='Password',
         label='',
         label_suffix='',
+        widget=forms.PasswordInput,
     )
 
     confirm_password = forms.CharField(
