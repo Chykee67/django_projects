@@ -13,9 +13,7 @@ class UserManager(BaseUserManager):
         self, email, date_of_birth, country_of_residence, state_of_residence, city_of_residence, street_address, first_name, last_name, password=None,
         ):
 
-        """
-            creates and saves user to database.
-        """
+        #creates and saves user to database.
 
         if not email:
             raise ValueError("User must have an email address!")
@@ -38,9 +36,7 @@ class UserManager(BaseUserManager):
         self, email, date_of_birth, country_of_residence, state_of_residence, city_of_residence, street_address, first_name, last_name, password,
         ):
 
-        """
-            creates and saves a superuser to database.
-        """
+        #creates and saves a superuser to database.
 
         user = self.create_user(
             email=email, date_of_birth=date_of_birth,
@@ -99,7 +95,7 @@ class User(AbstractBaseUser):
         blank=True,
         )
 
-    is_actve = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     is_admin = models.BooleanField(default=False)
 

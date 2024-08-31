@@ -77,6 +77,7 @@ class UserChangeForm(forms.ModelForm):
             "street_address",
             "email",
             "about_user",
+            "is_active",
             "is_admin",
         ]
 
@@ -102,6 +103,7 @@ class UserAdmin(BaseUserAdmin):
             "street_address",
             "email",
             "about_user",
+            "is_active",
             "is_admin",
         ]
         
