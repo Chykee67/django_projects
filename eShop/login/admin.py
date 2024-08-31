@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 from .models import User
 
 
-class UserCreationForm(forms.ModelForm):
+class UserCreationForm(forms.ModelForm): #Modelform gets it's fields from a database model, enabling saving of collected data to database
 
     """
     Form for creating a user. Contains all required fields and a repeated password
@@ -26,16 +26,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = [
-            "first_name",
-            "last_name",
-            "date_of_birth",
-            "country_of_residence",
-            "state_of_residence",
-            "city_of_residence",
-            "street_address",
-            "email",
-        ]
+        fields = ["email", "date_of_birth", "first_name", "last_name",]
 
     def clean_password2(self):
 
@@ -50,7 +41,7 @@ class UserCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
 
-        #Save the provided passowrd in hashed format
+        #Save the provided password in hashed format
 
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])

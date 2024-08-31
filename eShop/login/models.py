@@ -9,22 +9,17 @@ class UserManager(BaseUserManager):
 
     """ Manager for User model below """
 
-    def create_user(
-        self, email, date_of_birth, country_of_residence, state_of_residence, city_of_residence, street_address, first_name, last_name, password=None,
-        ):
+    def create_user(self, email, date_of_birth, first_name, last_name, password=None,):
 
         #creates and saves user to database.
+        #takes username_field, password and required fields as args.
 
         if not email:
             raise ValueError("User must have an email address!")
 
-
         user = self.model(
-            email=self.normalize_email(email), date_of_birth=date_of_birth,
-            country_of_residence=country_of_residence, state_of_residence=state_of_residence,
-            city_of_residence=city_of_residence, street_address=street_address,
-            first_name=first_name, last_name=last_name,
-        )
+            email=self.normalize_email(email), date_of_birth=date_of_birth, first_name=first_name, last_name=last_name,
+            )
 
         user.set_password(password)
         user.save(using=self._db)
@@ -32,24 +27,17 @@ class UserManager(BaseUserManager):
 
 
 
-    def create_superuser(
-        self, email, date_of_birth, country_of_residence, state_of_residence, city_of_residence, street_address, first_name, last_name, password,
-        ):
+    def create_superuser(self, email, date_of_birth, first_name, last_name, password,):
 
         #creates and saves a superuser to database.
+        #takes same arguments as create_user, but sets is_admin to True.
 
         user = self.create_user(
-            email=email, date_of_birth=date_of_birth,
-            country_of_residence=country_of_residence, state_of_residence=state_of_residence,
-            city_of_residence=city_of_residence, street_address=street_address,
-            first_name=first_name, last_name=last_name,
-            password=password,
+            email=email, date_of_birth=date_of_birth, first_name=first_name, last_name=last_name, password=password,
             )
 
         user.is_admin = True
-
         user.save(using=self._db)
-
         return user
 
 
@@ -107,13 +95,9 @@ class User(AbstractBaseUser):
 
     REQUIRED_FIELDS = [
         "date_of_birth",
-        "country_of_residence",
-        "state_of_residence",
-        "city_of_residence",
-        "street_address",
         "first_name",
         "last_name",
-    ]
+        ]
 
 
     def get_full_name():
@@ -123,33 +107,26 @@ class User(AbstractBaseUser):
         return f"{self.first_name}"
 
     def __str__(self):
-        return self.email
+        if self.first_name:
+            return self.first_name
+        else:
+            return self.email
     
     def has_perm(self, perm, obj=None):
 
-        """
-        Check if user has certain permission
-        """
+        #Check if user has a certain permission
 
         return True
 
     def has_module_perms(self, app_label):
         
-        """
-        Does the user have the permission to view the app with app_label
-        """
+        #Does the user have the permission to view the app with app_label arg
 
         return True
 
     @property
     def is_staff(self):
 
-        """
-        Is the user a member of staff?
-        """
+        #Is the user a member of staff?
 
         return self.is_admin
-
-
-
-        #stopped at page 583
