@@ -5,25 +5,29 @@ from django.http import HttpResponse
 
 
 from login.models import User
+from login.forms import SignInForm
 from store.models import Category, Subcategory, Item
 from .models import UserItem, Order, Notification
 
 
 
-def Index(request, user_name):
+def Index(request, user_first_name):
 
     """ View for user profile index page """
 
-    user = User.objects.get(user_name=user_name)
+    user = User.objects.get(first_name=user_first_name)
+
 
     flag = countryflag.getflag([user.country_of_residence])
 
-    
-    return render(request, 'usr_profile/index.html', {
-        'user': user,
-        'flag': flag,
-        'notification_count': get_notification_count(),
-    })
+    if request.user.is_authenticated:
+        return render(request, 'usr_profile/index.html', {
+            'user': user,
+            'flag': flag,
+            'notification_count': get_notification_count(),
+        })
+    else:
+        return render(request, 'login/signin.html', {'form':SignInForm()})
 
 def CartView(request, user_name):
 
@@ -48,7 +52,7 @@ def OrdersView(request, user_name):
         'user_name': user_name
     })
 
-def Notifications(request, user_name):
+def Notifications(request, user_first_name):
 
     """ View for messages and notifications for the user """
 

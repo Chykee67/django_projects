@@ -2,16 +2,14 @@ from django import forms
 from django.core import validators
 
 class SignInForm(forms.Form):
-    user_identity = forms.CharField(
-        label='',
+    email = forms.EmailField(
+        label='Email',
         label_suffix='',
-        initial='Username or Email',
         max_length=100,
         )
     password = forms.CharField(
-        label='',
+        label='Password',
         label_suffix='',
-        initial='Password',
         min_length=8,
         max_length=32,
         widget=forms.PasswordInput,

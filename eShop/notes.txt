@@ -32,7 +32,7 @@ for regular views:
     else:
         .... (for anonymous user)
 
-for asyn views:
+for async views:
     user = await request.auser()
 
     if user.is_authenticated:

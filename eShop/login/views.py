@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
 
 
 from .forms import SignInForm, SignUpForm
+from .models import User
 
 
 def SignIn(request):
@@ -21,27 +23,42 @@ def AuthoriseUser(request):
 
         if form.is_valid():  
             password = form.cleaned_data['password']
-            user_identity = form.cleaned_data['user_identity']
-    
-            try:
-                user = get_user(user_identity)
-            except (KeyError, User.DoesNotExist):
+            email = form.cleaned_data['email']
+
+            user = authenticate(request, username=email, password=password)
+
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('usr_profile:profile', args=(user,)))
+            else:
                 return render(request, 'login/signin.html', {
                     'form': form,
-                    'error_message': 'Incorrect username or email!',
+                    'error_message': 'Incorrect email or password'
                 })
-            else:
-                if user.password == password:
-                    return HttpResponseRedirect(reverse('usr_profile:profile', args=(user,)))
-                else:
-                    return render(request, 'login/signin.html', {
-                        'form': form,
-                        'error_message': 'Incorrect password entered!',
-                    })
+    
+            #try:
+            #    user = User.objects.get(email=email)
+            #except (KeyError, User.DoesNotExist):
+             #   return render(request, 'login/signin.html', {
+              #      'form': form,
+               #     'error_message': 'No user is attached to the email address!',
+                #})
+            #else:
+             #   if user.check_password(password):
+              #      return HttpResponseRedirect(reverse('usr_profile:profile', args=(user,)))
+               # else:
+                #    return render(request, 'login/signin.html', {
+                 #       'form': form,
+                  #      'error_message': 'Incorrect password entered!',
+                   # })
         else:
             return HttpResponse('Invalid Form')
     else:
         return HttpResponse('Invalid request method')
+
+def LogOutUser(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login:sign_in'))
 
 
 
@@ -97,11 +114,5 @@ def CreateUser(request):
     # raise user_name Exists Error, email attached to another account
     # raise weak password error
 
-
-def get_user(user_identity):
-    if '@' in user_identity:
-        return User.objects.get(user_email=user_identity)
-    else:
-        return User.objects.get(user_name=user_identity)
     
 # Create your views here.
