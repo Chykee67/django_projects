@@ -66,7 +66,30 @@ def logout_view(request):
 for async views use aauthenticate and alogin()
 
 login(request, user, backend=None) -- find details of the back end.
-    checkout AUTHENTICATION_BACKENDS (1092) IN seetings.py
+    checkout AUTHENTICATION_BACKENDS (1092) IN settings.py
 
 
 stopped at page 532.
+
+Django class-based views
+
+from django.views import Views
+
+class myView(Views):
+    ...
+
+decorating a class in class-based view
+from django.contrib.auth.decorators import login_required, permission_required
+
+    #What are decorators?
+    What effect do they have on code/view execution?
+    can they be used with function-based views?
+    what effect does logi_required have as a decorator?
+    decorating in urlconf? (409)
+
+from django.utils.decorators import method_decorator
+    how to use this
+
+from django.views.generic import TemplateView
+    how to use this?
+    how is this different from Views?

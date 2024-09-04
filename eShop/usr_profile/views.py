@@ -1,6 +1,6 @@
 import countryflag
 
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
 
@@ -15,7 +15,7 @@ def Index(request, user_first_name):
 
     """ View for user profile index page """
 
-    user = User.objects.get(first_name=user_first_name)
+    user = get_object_or_404(User, first_name=user_first_name)
 
 
     flag = countryflag.getflag([user.country_of_residence])

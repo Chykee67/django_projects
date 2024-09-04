@@ -29,13 +29,15 @@ def AuthoriseUser(request):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('usr_profile:profile', args=(user,)))
+                return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
             else:
                 return render(request, 'login/signin.html', {
                     'form': form,
                     'error_message': 'Incorrect email or password'
                 })
-    
+                
+    #Important to study HttpResponseRedirect more at this point.
+
             #try:
             #    user = User.objects.get(email=email)
             #except (KeyError, User.DoesNotExist):
