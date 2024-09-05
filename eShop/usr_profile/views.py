@@ -1,11 +1,10 @@
 import countryflag
 
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from login.models import User
-from login.forms import SignInForm
 from store.models import Category, Subcategory, Item
 from .models import UserItem, Order, Notification
 
@@ -27,7 +26,7 @@ def Index(request, user_first_name):
             'notification_count': get_notification_count(),
         })
     else:
-        return render(request, 'login/signin.html', {'form':SignInForm()})
+        return HttpResponseRedirect(reverse('login:sign_in'))
 
 def CartView(request, user_name):
 

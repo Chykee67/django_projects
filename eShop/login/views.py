@@ -35,24 +35,6 @@ def AuthoriseUser(request):
                     'form': form,
                     'error_message': 'Incorrect email or password'
                 })
-                
-    #Important to study HttpResponseRedirect more at this point.
-
-            #try:
-            #    user = User.objects.get(email=email)
-            #except (KeyError, User.DoesNotExist):
-             #   return render(request, 'login/signin.html', {
-              #      'form': form,
-               #     'error_message': 'No user is attached to the email address!',
-                #})
-            #else:
-             #   if user.check_password(password):
-              #      return HttpResponseRedirect(reverse('usr_profile:profile', args=(user,)))
-               # else:
-                #    return render(request, 'login/signin.html', {
-                 #       'form': form,
-                  #      'error_message': 'Incorrect password entered!',
-                   # })
         else:
             return HttpResponse('Invalid Form')
     else:

@@ -16,65 +16,48 @@ class SignInForm(forms.Form):
         )
 
 class SignUpForm(forms.Form):
-    user_name = forms.CharField(
-        label='',
-        label_suffix='',
-        initial='User name',
-        max_length=32,
-    )
 
-    user_email = forms.EmailField(
-        label='',
+    email = forms.EmailField(
+        label='Email',
         label_suffix='',
-        initial='Email address',
         max_length=100,
     )
 
-    password = forms.CharField(
+    password1 = forms.CharField(
         min_length=8,
         max_length=32,
-        initial='Password',
-        label='',
+        label='Password',
         label_suffix='',
         widget=forms.PasswordInput,
     )
 
-    confirm_password = forms.CharField(
-        initial='Confirm password',
-        label='',
+    password2 = forms.CharField(
+        label='Confirm password',
         label_suffix='',
+        min_length=8,
+        max_length=32,
+        widget=forms.PasswordInput,
     )
 
-    about_user = forms.CharField(
-        initial='Tell us about yourself',
-        label='',
-        label_suffix='',
-        max_length='300',
-        widget=forms.Textarea,
+    date_of_birth = forms.DateField()
+
+    first_name = forms.CharField(
+        label="First name",
+        label_suffix="",
+        max_length=40,
     )
 
-    country_of_residence = forms.CharField(
-        initial='Country of residence',
-        label='',
-        label_suffix='',
+    last_name = forms.CharField(
+        label="Last name",
+        label_suffix="",
+        max_length=40,
     )
 
-    state_of_residence = forms.CharField(
-        initial='State of residence',
-        label='',
-        label_suffix='',
-    )
+    def confirm_password(self):
+        password1 = self.cleaned_data['password1']
+        password2 = self.cleaned_data['password2']
 
-    city_of_residence = forms.CharField(
-        initial='City of residence',
-        label='',
-        label_suffix='',
-    )
-
-    street_address = forms.CharField(
-        initial = 'Street address',
-        label='',
-        label_suffix='',
-        max_length=300,
-        widget=forms.Textarea,
-    )
+        if password1 and password2 and password1 != password2:
+            raise ValueError('Please confirm password')
+        else:
+            return password1

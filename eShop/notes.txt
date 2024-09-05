@@ -73,9 +73,9 @@ stopped at page 532.
 
 Django class-based views
 
-from django.views import Views
+from django.views import View
 
-class myView(Views):
+class myView(Views): reference documentation at 6.3 pp 933
     ...
 
 decorating a class in class-based view
@@ -93,3 +93,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
     how to use this?
     how is this different from Views?
+
+stopped at page 413
+
+remember to check out using base.html, extending base.html, {% block content %} and {% endblock %}
