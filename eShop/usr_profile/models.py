@@ -20,9 +20,9 @@ class UserItem(models.Model):
         Item,
         on_delete=models.CASCADE,
     )
-    
+
     def __str__(self):
-        return self.item
+        return self.item.description
     
     @classmethod
     def add_to_cart(cls, user, item):

@@ -84,7 +84,7 @@ from django.contrib.auth.decorators import login_required, permission_required
     #What are decorators?
     What effect do they have on code/view execution?
     can they be used with function-based views?
-    what effect does logi_required have as a decorator?
+    what effect does login_required have as a decorator?
     decorating in urlconf? (409)
 
 from django.utils.decorators import method_decorator
@@ -97,3 +97,19 @@ from django.views.generic import TemplateView
 stopped at page 413
 
 remember to check out using base.html, extending base.html, {% block content %} and {% endblock %}
+
+
+To implement a ListView:
+
+from django.views.generic.list import ListView
+
+class CartView(ListView):
+    model = UserItem,
+# there is a self.object_list variable created by default which contains a list of objects in this model (UserItem),
+## therefore, object_list can be used in the template without providing it as a context e.g for item in object_list
+
+    def get_context_data(self, **kwargs):
+        ##used to provide other context data to template for rendering ##
+        context = super().get_context_data(**kwargs)
+        context['user'] = User.objects.get(first_name=user_name)
+

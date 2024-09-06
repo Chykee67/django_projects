@@ -2,18 +2,20 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_not_required
 
 
 from .forms import SignInForm, SignUpForm
 from .models import User
 
-
+@login_not_required
 def SignIn(request):
 
     """ View for collecting user input. """
 
     return render(request, 'login/signin.html', {'form': SignInForm()})
-
+    
+@login_not_required
 def AuthoriseUser(request):
 
     """ Function for validating user input on sign in page. """

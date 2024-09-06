@@ -1,14 +1,8 @@
-{% if cart %}
-    <ul>
-        {% for item in cart %}
-            <li>
-                <p>{{item}}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Your Cart is Empty </p>
-    <p><i><a href="">Checkout these interesting recommendations?</a></i></p>
-{% endif %}
-
-<p><a href="{% url 'store:index' user_name %}">Continue Shopping</a></p>
+<h1>{{user}}'s Cart</h1>
+<ul>
+    {% for item in cart %}
+        <li>
+            {{item}}
+        </li>
+    {% endfor %}
+</ul>
