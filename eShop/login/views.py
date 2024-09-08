@@ -42,55 +42,40 @@ def LogOutUser(request):
     logout(request)
     return HttpResponseRedirect(reverse('login:login'))
 
+@method_decorator(login_not_required, name="dispatch")
+class SignUpView(View):
+    def get(self, request):
+        return render(request, 'login/signup.html', {
+            'form': SignUpForm(),
+        })
 
-def SignUp(request):
-
-    """ View for adding a new user profile. """
-
-    return render(request, 'login/signup.html', {'form': SignUpForm()})
-
-    # raise my ValueError if conditions not met for provided user_name and password
-    ...
-
-def CreateUser(request):
-
-    """ Function that takes Sign up input and creates a user profile. """
-
-    if request.method == 'POST':
+    def post(self, request):
         form = SignUpForm(request.POST)
-
         if form.is_valid():
-            new_user = User(
-                user_name = form.cleaned_data['user_name'],
-                password = form.cleaned_data['password'],
-                user_email = form.cleaned_data['user_email'],
-                about_user = form.cleaned_data['about_user'],
-                country_of_residence = form.cleaned_data['country_of_residence'],
-                state_of_residence = form.cleaned_data['state_of_residence'],
-                city_of_residence = form.cleaned_data['city_of_residence'],
-                street_address = form.cleaned_data['street_address'],
-                )
-            
             try:
-                registered_user = User.objects.get(user_name=new_user.user_name)
+                user = User.objects.get(email=form.cleaned_data['email'])
             except (KeyError, User.DoesNotExist):
-                new_user.save()
-                return HttpResponseRedirect(reverse('usr_profile:profile', args=(new_user,)))
+                if form.confirm_password():
+                    new_user = User.objects.create_user(
+                        email=form.cleaned_data['email'],
+                        date_of_birth=form.cleaned_data['date_of_birth'],
+                        first_name=form.cleaned_data['first_name'],
+                        last_name=form.cleaned_data['last_name'],
+                        password=form.cleaned_data['password1']
+                    )
+
+                    return HttpResponseRedirect(reverse('usr_profile:index', args=(new_user,)))
+                else:
+                    return render(request, 'login/signup.html', {
+                        'form': SignUpForm(),
+                        'error_message': 'Password mismatch. Please confirm password!'
+                    })
             else:
                 return render(request, 'login/signup.html', {
                     'form': SignUpForm(),
-                    'error_message': f'User {registered_user} Already Exists!'
+                    'error_message': 'This email is already registered',
                 })
 
-        else:
-            return render(request, 'login/signup.html', {'form':SignUpForm()})
-
-
-    else:
-        return render(request, 'login/signup.html', {'form':SignUpForm()})
-    
-    # raise user_name Exists Error, email attached to another account
-    # raise weak password error
 
     
 # Create your views here.

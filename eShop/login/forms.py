@@ -58,6 +58,6 @@ class SignUpForm(forms.Form):
         password2 = self.cleaned_data['password2']
 
         if password1 and password2 and password1 != password2:
-            raise ValueError('Please confirm password')
+            return False
         else:
-            return password1
+            return True
