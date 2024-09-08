@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="usr_profile_content">
+    {% block usr_profile_content %}
+    {% endblock usr_profile_content %}
+</div>
+
+<div id="logout">
+    {% block logout %}
+    <a href="{% url 'login:logout' %}">Log Out</a>
+    {% endblock logout %}
+</div>
+{% endblock content %}

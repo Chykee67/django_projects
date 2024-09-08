@@ -1,29 +1,27 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_not_required
+from django.views import View
 
 
 from .forms import SignInForm, SignUpForm
 from .models import User
 
-@login_not_required
-def SignIn(request):
 
-    """ View for collecting user input. """
+@method_decorator(login_not_required, name="dispatch")
+class myloginView(View):
 
-    return render(request, 'login/signin.html', {'form': SignInForm()})
-    
-@login_not_required
-def AuthoriseUser(request):
+    def get(self, request):
+        return render(request, 'login/signin.html', {
+            'form': SignInForm(),
+        })
 
-    """ Function for validating user input on sign in page. """
-
-    if request.method == "POST":
+    def post(self, request):
         form = SignInForm(request.POST)
-
-        if form.is_valid():  
+        if form.is_valid():
             password = form.cleaned_data['password']
             email = form.cleaned_data['email']
 
@@ -34,21 +32,15 @@ def AuthoriseUser(request):
                 return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
             else:
                 return render(request, 'login/signin.html', {
-                    'form': form,
-                    'error_message': 'Incorrect email or password'
+                    'form': SignInForm(),
+                    'error_message': 'Incorrect email or password',
                 })
         else:
-            return HttpResponse('Invalid Form')
-    else:
-        return HttpResponse('Invalid request method')
+            return HttpResponse('form error')
 
 def LogOutUser(request):
     logout(request)
-    return HttpResponseRedirect(reverse('login:sign_in'))
-
-
-
-    # handle obejctDoesNotExistError if not previously registered
+    return HttpResponseRedirect(reverse('login:login'))
 
 
 def SignUp(request):

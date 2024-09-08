@@ -1,8 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>Sign in</h1>
 
 {% if error_message %} {{error_message}} {% endif %}
 
-<form action="{% url 'login:auth_user' %}" method="post">
+<form action="{% url 'login:login' %}" method="post">
 
     {% csrf_token %}
 
@@ -12,3 +14,4 @@
 </form>
 
 <p><i>Don't have an account? <a href="{% url 'login:sign_up' %}">Create one here.</a></i></p>
+{% endblock content %}

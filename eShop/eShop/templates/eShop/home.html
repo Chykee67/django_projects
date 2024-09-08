@@ -1,86 +1,92 @@
-{% load static %}
+{% extends "base.html" %}
 
-<a href="{% url 'home' %}">Home</a> <a href="{% url 'login:sign_in' %}">Sign up/Sign in</a> <a href="">Contact Us</a>
+<div id="content">
+    {% block content %}
+        {% load static %}
 
-<h1>Welcome to eShop.</h1>
+        <a href="{% url 'home' %}">Home</a> <a href="{% url 'login:login' %}">Sign up/Sign in</a> <a href="">Contact Us</a>
 
-<p>
-    Your one stop destination for <b>best quality groceries</b>.
-</p>
+        <h1>Welcome to eShop.</h1>
 
-<h2>Be sure to check out our most visited sections for the week!!</h2>
-<p>
-    <ol>
-        <li>
-            <a href="">
-                <figure>
-                    <figcaption>
-                        <p>Cereals</p>
-                    </figcaption>
-                    <img src="{% static 'eShop/images/cereals.jpeg' %}"
-                    alt="Breakfast cereals"
-                    width="150"
-                    height="150"
-                    />
-                </figure>
-            </a>
-        </li>
+        <p>
+            Your one stop destination for <b>best quality groceries</b>.
+        </p>
 
-        <li>
-            <a href="">
-                <figure>
-                    <figcaption>
-                        <p>Handy Tools</p>
-                    </figcaption>
-                    <img src="{% static 'eShop/images/handy_tools.jpeg' %}"
-                    alt="Tools for home use"
-                    width="150"
-                    height="150"
-                    />
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <figure>
-                    <figcaption>
-                        <p>Breakfast Beverages</p>
-                    </figcaption>
-                    <img src="{% static 'eShop/images/breakfast_beverages.jpeg' %}"
-                    alt="Drinks for breakfast"
-                    width="150"
-                    height="150"
-                    />
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <figure>
-                    <figcaption>
-                        <p>Kiddies</p>
-                    </figcaption>
-                    <img src="{% static 'eShop/images/kiddies.jpeg' %}"
-                    alt="Items for children"
-                    width="150"
-                    height="150"
-                    />
-                </figure>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <figure>
-                    <figcaption>
-                        <p>Bathroom wares and Toileteries</p>
-                    </figcaption>
-                    <img src="{% static 'eShop/images/bw&t.jpeg' %}"
-                    alt="Personal hygiene items"
-                    width="150"
-                    height="150"
-                    />
-                </figure>
-            </a>
-        </li>
-    </ol>
-</p>
+        <h2>Be sure to check out our most visited sections for the week!!</h2>
+        <p>
+            <ol>
+                <li>
+                    <a href="">
+                        <figure>
+                            <figcaption>
+                                <p>Cereals</p>
+                            </figcaption>
+                            <img src="{% static 'eShop/images/cereals.jpeg' %}"
+                            alt="Breakfast cereals"
+                            width="150"
+                            height="150"
+                            />
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <figure>
+                            <figcaption>
+                                <p>Handy Tools</p>
+                            </figcaption>
+                            <img src="{% static 'eShop/images/handy_tools.jpeg' %}"
+                            alt="Tools for home use"
+                            width="150"
+                            height="150"
+                            />
+                        </figure>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <figure>
+                            <figcaption>
+                                <p>Breakfast Beverages</p>
+                            </figcaption>
+                            <img src="{% static 'eShop/images/breakfast_beverages.jpeg' %}"
+                            alt="Drinks for breakfast"
+                            width="150"
+                            height="150"
+                            />
+                        </figure>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <figure>
+                            <figcaption>
+                                <p>Kiddies</p>
+                            </figcaption>
+                            <img src="{% static 'eShop/images/kiddies.jpeg' %}"
+                            alt="Items for children"
+                            width="150"
+                            height="150"
+                            />
+                        </figure>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <figure>
+                            <figcaption>
+                                <p>Bathroom wares and Toileteries</p>
+                            </figcaption>
+                            <img src="{% static 'eShop/images/bw&t.jpeg' %}"
+                            alt="Personal hygiene items"
+                            width="150"
+                            height="150"
+                            />
+                        </figure>
+                    </a>
+                </li>
+            </ol>
+        </p>
+    {% endblock content %}
+</div>
