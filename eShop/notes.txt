@@ -113,3 +113,10 @@ class CartView(ListView):
         context = super().get_context_data(**kwargs)
         context['user'] = User.objects.get(first_name=user_name)
 
+To do next:
+1. password management: changing logged in user password, resetting lost password, password reset links, validating password strength
+2. updating registered user information
+3. Caching
+4. Session management: how long a user account stays logged in, conditions that automatically log you out
+5. cursory glance at accepting payments
+6. implementing an async view.

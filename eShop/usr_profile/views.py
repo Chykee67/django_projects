@@ -18,14 +18,19 @@ def Index(request, user_first_name):
 
     user = get_object_or_404(User, first_name=user_first_name)
 
+    if user.country_of_residence:
+        flag = countryflag.getflag([user.country_of_residence])
 
-    flag = countryflag.getflag([user.country_of_residence])
-
-    return render(request, 'usr_profile/index.html', {
-        'user': user,
-        'flag': flag,
-        'notification_count': get_notification_count(),
-    })
+        return render(request, 'usr_profile/index.html', {
+            'user': user,
+            'flag': flag,
+            'notification_count': get_notification_count(),
+        })
+    else:
+        return render(request, 'usr_profile/index.html', {
+            'user': user,
+            'notification_count': get_notification_count(),
+        })
 
 class CartView(ListView):
 

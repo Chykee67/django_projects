@@ -2,9 +2,9 @@
 
 <div id="usr_profile_content">
 {% block usr_profile_content %}
-    <p><h1>Welcome to your profile, {{user}} {{flag}}</h1></p>
+    <p><h1>Welcome to your profile, {{user|title}} {{flag}}</h1></p>
 
-    <p><h2>Upload Profile Pic here</h2></p>
+    <p><h2>Upload Profile Pic Here</h2></p>
 
     <p>
         {{notification_count}} <a href="{% url 'usr_profile:notifications' user.first_name %}">Messages</a>
