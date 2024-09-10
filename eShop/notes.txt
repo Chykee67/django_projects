@@ -115,8 +115,11 @@ class CartView(ListView):
 
 To do next:
 1. password management: changing logged in user password, resetting lost password, password reset links, validating password strength
-2. updating registered user information
+2. updating registered user information: how can I ensure to only edit certain aspects of user info, while still rendering the entire form with the current values as the initial value?
 3. Caching
 4. Session management: how long a user account stays logged in, conditions that automatically log you out
 5. cursory glance at accepting payments
 6. implementing an async view.
+7. using tokens in django
+8. sending emails from django web apps (Sending an email for password reset adds an extra layer of authentication, ensure to make it a part of this site)
+9. restricting user access using permissions and setting default user permissions

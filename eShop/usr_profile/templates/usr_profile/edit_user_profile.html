@@ -1,0 +1,11 @@
+{% extends 'base_usr_profile.html' %}
+
+{% block usr_profile_content %}
+<form action="{% url 'usr_profile:edit_user_profile' user.first_name %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Edit profile</button>
+</form>
+{% endblock usr_profile_content %}
+
+{% block edit_user_profile %}{% endblock edit_user_profile %}

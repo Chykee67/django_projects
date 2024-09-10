@@ -3,34 +3,69 @@ import countryflag
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.views import View
 from django.views.generic.list import ListView
-from django.contrib.auth.decorators import login_not_required
 
 from login.models import User
+from login.forms import EditUserProfileForm
 from store.models import Category, Subcategory, Item
 from .models import UserItem, Order, Notification
 
 
 
-def Index(request, user_first_name):
+class IndexView(View):
 
-    """ View for user profile index page """
+    http_method_names = ["get", "head", "options", "trace"]
 
-    user = get_object_or_404(User, first_name=user_first_name)
+    def get(self, request, user_first_name):
 
-    if user.country_of_residence:
-        flag = countryflag.getflag([user.country_of_residence])
+        """ View for user profile index page """
 
-        return render(request, 'usr_profile/index.html', {
-            'user': user,
-            'flag': flag,
-            'notification_count': get_notification_count(),
+        user = get_object_or_404(User, first_name=user_first_name)
+
+        if user.country_of_residence:
+            flag = countryflag.getflag([user.country_of_residence])
+
+            return render(request, 'usr_profile/index.html', {
+                'user': user,
+                'flag': flag,
+                'notification_count': get_notification_count(),
+            })
+        else:
+            return render(request, 'usr_profile/index.html', {
+                'user': user,
+                'notification_count': get_notification_count(),
+            })
+
+
+class EditUserProfile(View):
+
+    def get(self, request, user_first_name):
+
+        return render(request, 'usr_profile/edit_user_profile.html', {
+            'form': EditUserProfileForm(),
+            'user': User.objects.get(first_name=user_first_name)
         })
-    else:
-        return render(request, 'usr_profile/index.html', {
-            'user': user,
-            'notification_count': get_notification_count(),
-        })
+
+    def post(self, request, user_first_name):
+
+        user = User.objects.get(first_name=user_first_name)
+
+        form = EditUserProfileForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['first_name']:
+                user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.date_of_birth = form.cleaned_data['date_of_birth']
+            user.about_user = form.cleaned_data['about_user']
+            user.country_of_residence = form.cleaned_data['country_of_residence']
+            user.state_of_residence = form.cleaned_data['state_of_residence']
+            user.city_of_residence = form.cleaned_data['city_of_residence']
+            user.street_address = form.cleaned_data['street_address']
+
+            user.save()
+
+            return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
 
 class CartView(ListView):
 
