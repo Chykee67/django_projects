@@ -36,7 +36,7 @@ class myloginView(View):
                     'error_message': 'Incorrect email or password',
                 })
         else:
-            return HttpResponse('form error')
+            return HttpResponse(f'{form.errors}')
 
 @method_decorator(login_not_required, name="dispatch")
 class PasswordResetView(View):

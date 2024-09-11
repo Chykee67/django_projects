@@ -89,38 +89,40 @@ class CartView(ListView):
 
     """ A View of User Cart """
 
-    def get(self, request, user_name):
+    def get(self, request, user_first_name):
 
-        user = get_object_or_404(User, first_name=user_name)
+        user = get_object_or_404(User, first_name=user_first_name)
 
         return render(request, 'usr_profile/cartview.html', {
             'cart': UserItem.objects.filter(user=user),
             'user': user,
         })
     
-    
 
-
-def OrdersView(request, user_name):
+class OrdersView(ListView):
 
     """ A View for the User's orders """
 
-    orders = Order.objects.filter(user__user_name=user_name)
+    def get(self, request, user_first_name):
+
+        orders = Order.objects.filter(user__first_name=user_first_name)
+
+        return render(request, 'usr_profile/orders.html', {
+            'orders': orders,
+            'user_name': user_first_name
+        })
 
 
-    return render(request, 'usr_profile/orders.html', {
-        'orders': orders,
-        'user_name': user_name
-    })
+class NotificationsView(ListView):
 
-def Notifications(request, user_first_name):
+    def get(self, request, user_first_name):
 
-    """ View for messages and notifications for the user """
+        """ View for messages and notifications for the user """
 
-    return render(request, 'usr_profile/notifications.html', {
-        'notification_count': get_notification_count(),
-        'notifications': Notification.objects.all(),
-    })
+        return render(request, 'usr_profile/notifications.html', {
+            'notification_count': get_notification_count(),
+            'notifications': Notification.objects.all(),
+        })
 
 def get_notification_count():
     notification_counter = 0
@@ -131,4 +133,3 @@ def get_notification_count():
     else: pass
 
     return notification_counter
-# Create your views here.

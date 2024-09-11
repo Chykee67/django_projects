@@ -57,6 +57,11 @@ class Order(models.Model):
 
 class Notification(models.Model):
 
+    subject = models.CharField(
+        max_length = 40,
+        default='New Notification',
+    )
+
     message = models.TextField(
         max_length = 300,
     )
