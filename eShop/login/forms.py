@@ -116,7 +116,7 @@ class EditUserProfileForm(forms.Form):
 
     date_of_birth = forms.DateField(
         label_suffix='',
-        initial='yyyy-mm-dd',
+        initial='1970-01-01',
         required=False,
     )
 

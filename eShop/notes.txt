@@ -123,3 +123,9 @@ To do next:
 7. using tokens in django
 8. sending emails from django web apps (Sending an email for password reset adds an extra layer of authentication, ensure to make it a part of this site)
 9. restricting user access using permissions and setting default user permissions
+
+New to-do tasks
+1. change all models to be like user model in login and register them in admin similarly
+2. Add search function to store apps - should come last (use Q from django.db.models, __contains, __icontains and other filter tools)
+3. Edit store app views to include section views, item views
+4. image upload to create profile picture

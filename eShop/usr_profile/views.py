@@ -53,20 +53,36 @@ class EditUserProfile(View):
 
         form = EditUserProfileForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['first_name']:
+            if form.cleaned_data['first_name'] != '':
                 user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            user.date_of_birth = form.cleaned_data['date_of_birth']
-            user.about_user = form.cleaned_data['about_user']
-            user.country_of_residence = form.cleaned_data['country_of_residence']
-            user.state_of_residence = form.cleaned_data['state_of_residence']
-            user.city_of_residence = form.cleaned_data['city_of_residence']
-            user.street_address = form.cleaned_data['street_address']
+            else: pass
+            if form.cleaned_data['last_name'] != '':
+                user.last_name = form.cleaned_data['last_name']
+            else: pass
+            if form.cleaned_data['date_of_birth'] != '1970-01-01':
+                user.date_of_birth = form.cleaned_data['date_of_birth']
+            else: pass
+            if form.cleaned_data['about_user'] != '':
+                user.about_user = form.cleaned_data['about_user']
+            else: pass
+            if form.cleaned_data['country_of_residence'] != '':
+                user.country_of_residence = form.cleaned_data['country_of_residence']
+            else: pass
+            if form.cleaned_data['state_of_residence'] != '':
+                user.state_of_residence = form.cleaned_data['state_of_residence']
+            else: pass
+            if form.cleaned_data['city_of_residence'] != '':
+                user.city_of_residence = form.cleaned_data['city_of_residence']
+            else: pass
+            if form.cleaned_data['street_address'] != '':
+                user.street_address = form.cleaned_data['street_address']
+            else: pass
 
             user.save()
 
             return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
-
+        else:
+            return HttpResponse(f'{form.errors}')
 class CartView(ListView):
 
     """ A View of User Cart """
