@@ -125,6 +125,7 @@ To do next:
 9. restricting user access using permissions and setting default user permissions
 
 New to-do tasks
+convert all views to class-based views.
 1. change all models to be like user model in login and register them in admin similarly
 2. Add search function to store apps - should come last (use Q from django.db.models, __contains, __icontains and other filter tools)
 3. Edit store app views to include section views, item views

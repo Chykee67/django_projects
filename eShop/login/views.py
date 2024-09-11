@@ -72,9 +72,11 @@ class PasswordResetView(View):
                     })
 
 
-def LogOutUser(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('login:login'))
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse('login:login'))
 
 
 @method_decorator(login_not_required, name="dispatch")

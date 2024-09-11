@@ -83,6 +83,8 @@ class EditUserProfile(View):
             return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
         else:
             return HttpResponse(f'{form.errors}')
+
+            
 class CartView(ListView):
 
     """ A View of User Cart """
