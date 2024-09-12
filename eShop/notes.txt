@@ -130,3 +130,27 @@ convert all views to class-based views.
 2. Add search function to store apps - should come last (use Q from django.db.models, __contains, __icontains and other filter tools)
 3. Edit store app views to include section views, item views
 4. image upload to create profile picture
+
+
+Store Schema
+SECTIONS
+- PERSONAL CARE
+- BEAUTY
+- FASHION
+- KIDDIES
+- FOOD
+- GADGETS AND APPLIANCES
+
+SECTION CHARACTERISTICS
+- TITLE
+- CATEGORIES (FOREIGNKEY LINKED) - STUDY RELATIONSHIPS (ONE-TO-MANY, ONE-TO-ONE, MANY-TO-MANY) - pp. 115
+- TREND_POWER - UPDATED PER ORDER PLACED FROM THIS SECTION - FOR CONSTRUCTING TRENDING SECTIONS
+- SUGGESTIONS (list)- FEEDBACK FROM CUSTOMERS ON WHAT THEY WOULD LIKE ADDED OR WHAT THEY COULDN'T find (hOW TO ASSOCIATE POSTS WITH LOGGED IN USER)
+- RATING FEATURE (IN FUTURE UPDATES)
+
+models API REFERENCE - pp.1665
+model how to guide - 109
+inner class Meta - 122
+custom model field - 777
+making queries - 137
+relationships - 115

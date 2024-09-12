@@ -1,33 +1,18 @@
-class Car:
-    now = 4
-    def __init__(self, maker:str, yop:int, price:str, mileage:str):
-        self.maker = maker
-        self.yop = yop
-        self.price = price
-        self.mileage = mileage
+class Section:
+    suggestion = []
 
-    def __str__(self):
-        return self.model
+def main():
+    toys = Section()
 
-class Benz(Car):
-    salary = 700000
-    qty = 7
+    i=0
 
-    def __init__(self, maker, model:str, yop, price, mileage):
-        super().__init__(maker, yop, price, mileage)
-        self.model = model
+    while i < 3:
+        ask = input('What are you suggesting we add to this section? ')
+        i+=1
+        toys.suggestion.append(ask)
 
-    def deal(self):
-        return self.salary/self.qty
+    for _ in toys.suggestion:
+        print(_, end=', ')
 
-class Garage(Benz):
-    owner:str = 'chikeluba'
-
-    def __str__(self):
-        return self.owner
-
-garage = Garage('mercedes', 'c350', 2022, 'two million', 'three kilometers')
-
-garage.salary = 7000
-
-print(garage.deal())
+if __name__ == "__main__":
+    main()
