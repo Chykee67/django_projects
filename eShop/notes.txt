@@ -201,3 +201,33 @@ One to One rel
     - most useful on the primary key of a model, especially if it is related to another model
     - eg using the model church to extend a place model that already has attributes like zip code, address, phone number
 stopped at 121.
+
+model attributes continued
+
+OBJECTS
+    - every model has an objects attribute that refers to the Manager (1656). the Manager is a reference to the functions that dictate the behaviour of instances of the model
+    e.g: class person(models.Model):
+            objects = PersonManager()
+        class PersonManger(models.Model):
+            def create_person(self, a, b, c):
+                #instantiates a person object
+                return person(a, b, c)
+        methods defined in the manager have table_wide effects, affects all instances of the model
+        conversely methods defined in the model have only row_wide effects, limited to the particular instance (1679)
+
+DEFAULT MODEL METHODS
+    There are default methods available to all model objects e.g save(), delete();
+    it is often useful to override the behaviour of these model methods and customise them to suit your use case;
+
+    save() - 1674; specifying fields to save - 1678, pre-delete signal/post-delete signal - 1933/4
+
+        def save(self, **kwargs):
+            if self.name == "Yoko Ono's blog":
+                return # Yoko shall never have her own blog!
+            else:
+                super().save(**kwargs) # Call the "real" save() method.
+
+MODELS MAY ALSO BE CREATED USING RAW SQL QUERIES - 194
+
+
+MODEL INHERITANCE PATTERNS
