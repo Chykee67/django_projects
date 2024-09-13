@@ -148,9 +148,56 @@ SECTION CHARACTERISTICS
 - SUGGESTIONS (list)- FEEDBACK FROM CUSTOMERS ON WHAT THEY WOULD LIKE ADDED OR WHAT THEY COULDN'T find (hOW TO ASSOCIATE POSTS WITH LOGGED IN USER)
 - RATING FEATURE (IN FUTURE UPDATES)
 
-models API REFERENCE - pp.1665
+models API REFERENCE - pp.1665, reference for the different django fields - 1606, create custom model fields 777
 model how to guide - 109
 inner class Meta - 122
-custom model field - 777
+
 making queries - 137
 relationships - 115
+
+model field attributes = {
+    null
+    blank
+    verbose name
+    choices
+    primary key: if set to true, the field becomes the primary key of the model and hence must be unique for every object, altering it simply creates a new object
+    help_text
+    default
+    unique
+}
+
+Relationships
+many to one relationship 
+    - use ForeignKey field e.g many cars to one manufacturer - ref 1623, 
+    - 166 - accessing backwards related objects (see the cars related to a manufacturer)
+    - example - 251
+
+many to many relationships - e.g a hospital can have different doctors, a doctor can also work at multiple hospitals
+    - define the relation with a manytomanyfield on only one of the related models e.g on the hospital as below:
+    class MO (models.Model):
+        #...
+
+    class Hospital(models.Model):
+        doctors = models.ManyToManyField(MO)
+
+    - api ref - 1629, how to use - 245
+
+    add extra info for a manytomany rel by creating an intermediate model (how to use - 118)
+    - and using the through arg to the manytomanyfield e.g
+    class Person(m...):
+        #...
+
+    class Group(m...):
+        members = m.mtmf(Person, through="Membership")
+
+    class Membership(m...):
+        person = m.fk(Person)
+        group = m.fk(Group)
+        date_joined = m.df() #extra info
+        invite_reason = m.cf()
+
+One to One rel
+    - can be implicitly implemented using inheritance (multiple inheritance study)**
+    - most useful on the primary key of a model, especially if it is related to another model
+    - eg using the model church to extend a place model that already has attributes like zip code, address, phone number
+stopped at 121.
