@@ -231,3 +231,53 @@ MODELS MAY ALSO BE CREATED USING RAW SQL QUERIES - 194
 
 
 MODEL INHERITANCE PATTERNS
+1. ABSTRACT BASE INHERITANCE:
+    THIS IS USED IN CASES WHERE A CLASS IS CREATED TO HOLD INFO COMMON TO A SET OF CLASSES TO AVOID UNNECESSARY REPETITION OF CODE.
+    EACH CLASS REQUIRING THIS INFORMATION THEN INHERITS FROM THIS PARENT CLASS.
+    IF YOU CREATE A META SUBCLASS IN THE BASE CLASS AND SET ITS ABSTRACT ATTRIBUTE TO TRUE, NO OBJECTS OF THE BASE CLASS WILL BE CREATED.
+    DJANGO SETS ABSTRACT=FALSE FOR THE CHILD CLASSES BY DEFAULT, EXCEPT YOU SET IT TO TRUE EXPLICITLY. META CLASS ATTRIBUTES ALSO HAVE TO BE EXPLICITLY INHERITED FROM THE PARENT CLASS
+
+    E.G:
+
+    from django.db import models
+
+    class BASE(models.Model):
+        #... attributes and functions
+
+        class Meta:
+            abstract=True
+            colour = ['yellow']
+
+    class Child(BASE):
+        #... attributes and fxns
+
+        class Meta(BASE.Meta):
+            ordering = ['height']
+
+    NB: inherited Fields can be overriden with new fields or removed with None
+
+2. MULTI-TABLE INHERITANCE:
+    IN THIS INSTANCE THE PARENT CLASS INHERITS FROM DJANGO MODELS, AND IS SUPER-CLASSED BY THE CHILD CLASSES.
+    THE PARENT CLASS HAS A TABLE AND ITS OBJECTS CAN BE INDEPEDENTLY CREATED
+    THE CHILD CLASS INHERITS ATTRIBUTES AND FUNCTIONS EXCEPT FOR META FROM THE PARENT CLASS
+    THE CHILD CLASS CAN BE REFERENCED BY USING SMALL CAPS OF IT'S NAME WITH THE OBJECTS OF THE PARENT CLASS WITH THE SAME PRIMARY key
+        E.G:
+        from django.db import models
+
+        class PARENT(models.Model):
+            name=models.CharField(max_length=32)
+            #....
+
+        class CHILD(PARENT):
+            location = models.CharField(max_length=32)
+            #...
+
+        CHILD.object.create(name='pikin', location='child object')
+
+        p = Parent.objects.get(name='pikin')
+
+        p.child should return the child class with name 'pikin', because creating a child object also creates a related parent object table
+
+        
+
+        stopped at proxy models
