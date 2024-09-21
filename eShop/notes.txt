@@ -132,14 +132,14 @@ convert all views to class-based views.
 4. image upload to create profile picture
 
 
-Store Schema
-SECTIONS
-- PERSONAL CARE
-- BEAUTY
-- FASHION
+Mall Schema
+FLOORS, SECTIONS, RACKS AND ITEMS
+- PERSONAL CARE AND HYGIENE
+- BEAUTY AND FASHION
+- HOME TOOLS, GADGETS AND APPLIANCES
 - KIDDIES
+- PHARMACEUTICALS AND HEALTH
 - FOOD
-- GADGETS AND APPLIANCES
 
 SECTION CHARACTERISTICS
 - TITLE
@@ -147,6 +147,8 @@ SECTION CHARACTERISTICS
 - TREND_POWER - UPDATED PER ORDER PLACED FROM THIS SECTION - FOR CONSTRUCTING TRENDING SECTIONS
 - SUGGESTIONS (list)- FEEDBACK FROM CUSTOMERS ON WHAT THEY WOULD LIKE ADDED OR WHAT THEY COULDN'T find (hOW TO ASSOCIATE POSTS WITH LOGGED IN USER)
 - RATING FEATURE (IN FUTURE UPDATES)
+
+EACH SECTION WOULD HAVE CATEGORIES AND EACH CATEGORY 
 
 models API REFERENCE - pp.1665, reference for the different django fields - 1606, create custom model fields 777
 model how to guide - 109
@@ -280,4 +282,21 @@ MODEL INHERITANCE PATTERNS
 
         
 
-        stopped at proxy models
+PROXY MODEL
+    Proxy models are pseudo-models used to extend the behaviour of a model.
+    They are created by setting a Meta attribute (proxy = True)
+    They do not create a table, but instead rely on data stored on a model's table to extend the behaviour of the model
+    NB: objects of the model being extended cannot reference the proxy model
+
+    - ONLY ONE NON-ABSTRACT MODEL CAN BE ASSOCIATED WITH A PROXY MODEL EITHER DIRECTLY OR INDIRECTLY VIA OTHER INHERITED ABSTRACT MODELS AND/OR PROXY MODELS.
+    - HOWEVER, THEY CAN INHERIT ANY NUMBER OF ABSTRACT OR PROXY MODELS
+
+    - PROXY MODELS INHERIT THE MANAGERS OF THE INHERITED CLASSES BY DEFAULT, BUT CAN HAVE THEIR OWN MANAGERS DEFINED
+
+
+MANAGERS
+    Django attaches a default manager objects to every model and this directs the table-wide behaviour of the model
+    e.g getting the list of all objects on the table, creating/deleting an object, effect
+    Conversely, model methods direct the behaviour of individual instances (objects) of the model
+
+QUERYSETS API ON 1686, FIELD LOOK UP API REFERENCE ON 1740
