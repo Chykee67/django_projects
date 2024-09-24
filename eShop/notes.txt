@@ -168,7 +168,7 @@ model field attributes = {
     unique
 }
 
-Relationships
+Relationships, RELATEDMANAGER - 1651
 many to one relationship 
     - use ForeignKey field e.g many cars to one manufacturer - ref 1623, 
     - 166 - accessing backwards related objects (see the cars related to a manufacturer)
@@ -300,3 +300,5 @@ MANAGERS
     Conversely, model methods direct the behaviour of individual instances (objects) of the model
 
 QUERYSETS API ON 1686, FIELD LOOK UP API REFERENCE ON 1740
+
+DJANGO MODELADMIN CONFIGURATIONS 1022

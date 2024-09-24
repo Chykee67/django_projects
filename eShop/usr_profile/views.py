@@ -8,8 +8,8 @@ from django.views.generic.list import ListView
 
 from login.models import User
 from login.forms import EditUserProfileForm
-from store.models import Category, Subcategory, Item
-from .models import UserItem, Order, Notification
+#from store.models import Category, Subcategory, Item
+#from .models import UserItem, Order, Notification
 
 
 

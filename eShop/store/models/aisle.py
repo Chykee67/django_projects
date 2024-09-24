@@ -15,3 +15,14 @@ class Aisle(models.Model):
         help_text="Aisle's unique ID",
         verbose_name='Aisle ID',
     )
+
+    description = models.CharField(
+        max_length=100,
+        help_text="Items on this aisle",
+        default="items"
+    )
+
+    aisles = models.Manager()
+
+    def __str__(self):
+        return self.id

@@ -3,7 +3,7 @@ import emoji
 from django.shortcuts import render
 
 from login.models import User
-from .models import Category, Subcategory, Item
+#from .models import Category, Subcategory, Item
 
 
 def IndexView(request, user_name):

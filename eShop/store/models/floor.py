@@ -9,9 +9,10 @@ class Floor(models.Model):
     level = models.PositiveIntegerField(
         choices=CHOICES,
         primary_key=True,
-        db_comment='Floor space storey level',
         help_text='Please enter a positive integer value for the storey level of this floor'
     )
+
+    floors = models.Manager()
 
     def __str__(self):
         for k, v in self.CHOICES.items():
@@ -25,5 +26,3 @@ class Floor(models.Model):
             return fl
         else:
             return f'Invalid floor level'
-
-    
