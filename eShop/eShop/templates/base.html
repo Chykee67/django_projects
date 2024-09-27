@@ -27,5 +27,14 @@
     <div id="content">
         {% block content %}{% endblock content %}
     </div>
+
+    <div id="logout_area">
+        {% block logout_area %}
+        {% if user.pk != None %}
+        <p>{{user}}</p>
+        <a href="{% url 'login:logout' %}">Logout</a>
+        {% endif %}
+        {% endblock logout_area %}
+    </div>
 </body>
 </html>

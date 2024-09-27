@@ -16,6 +16,7 @@ class MyLoginView(View):
     def get(self, request):
         return render(request, 'login/signin.html', {
             'form': SignInForm(),
+            'session_user': request.session.get('user', False),
         })
 
     def post(self, request):
@@ -28,7 +29,7 @@ class MyLoginView(View):
 
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('usr_profile:index', args=(user,)))
+                return HttpResponseRedirect('/')
             else:
                 return render(request, 'login/signin.html', {
                     'form': SignInForm(),
