@@ -1,25 +1,10 @@
-
-Choice = {
-    1: 'first floor',
-    2: 'second floor',
-    3: 'third floor',
+trends = {
+    'maggi': 10,
+    'onions': 5,
+    'beans': 25,
+    'garri': 27,
+    'salt': 2,
+    'rice': 15
 }
 
-def value(x):
-    level = int(input('Enter a level: '))
-    fv = False
-    for k, v in x.items():
-        if level != k:
-            pass
-        else:
-            fv = v
-            break
-    if fv:
-        return fv
-    else:
-        return 'invalid floor level'
-        
-def main():
-    print(value(Choice))
-if __name__ == '__main__':
-    main()
+print(sorted(trends.items(), key=lambda tre: tre[1]))

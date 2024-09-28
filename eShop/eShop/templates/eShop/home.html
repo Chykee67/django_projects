@@ -12,6 +12,18 @@
         </p>
 
         <h2>Be sure to check out our most visited sections for the week!!</h2>
+        <p>
+            <b>
+                <a href="{% url 'store:index' %}">Sections</a>
+            </b>
+        </p>
+        <ul>
+            {% for section in sections %}
+            <li>
+                <a href="{% url 'store:section' section.description %}"><b>{{section.description|title}}</b></a>
+            </li>
+            {% endfor %}
+        </ul>
         
     {% endblock content %}
 </div>
