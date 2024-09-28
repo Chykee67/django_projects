@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}eShop.com{% endblock title %}</title>
+    <title>{% block TITLE %}eShop{% endblock TITLE %}</title>
 </head>
 
 <body>
+    <div class="topnav">
+
+        {% block NAV_BAR %}
+
+        <a class="active" href="{% url 'home' %}">Home</a>
+
+        {% if user.pk != None %}
+        <a href="">Profile</a>
+        {% else %}
+        <a href="{% url 'login:login' %}">Login</a>
+        {% endif %}
+
+        <a href="">Contact Us</a>
+
+        {% endblock NAV_BAR %}
+    </div>
+
+    <div id="base_section_content">
+        {% block BASE_SECTION_CONTENT %}{% endblock BASE_SECTION_CONTENT %}
+    </div>
+
     <div id="sidebar">
-        {% block sidebar %}
+        {% block SIDEBAR %}
+        <h3>
+            <b>Quick links</b>
+        </h3>
             <ul>
+                {% if user.pk != None %}
                 <li>
-                    <a href="/">Home</a>
+                    <a href="">My Cart</a>
                 </li>
                 <li>
-                    <a href="">Sections</a>
+                    <a href="">Orders</a>
                 </li>
                 <li>
-                    <a href="">Trending Sections</a>
+                    <a href="">Notifications</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'store:trending' %}">Trending Sections</a>
                 </li>
                 <li>
                     <a href="">Trending Items</a>
                 </li>
             </ul>
-        {% endblock sidebar %}
-    </div>
-
-    <div id="content">
-        {% block content %}{% endblock content %}
+        {% endblock SIDEBAR %}
     </div>
 
     <div id="logout_area">
-        {% block logout_area %}
+
+        {% block LOGOUT_AREA %}
+
         {% if user.pk != None %}
         <p>{{user}}</p>
         <a href="{% url 'login:logout' %}">Logout</a>
         {% endif %}
-        {% endblock logout_area %}
+
+        {% endblock LOGOUT_AREA %}
     </div>
+
 </body>
 </html>

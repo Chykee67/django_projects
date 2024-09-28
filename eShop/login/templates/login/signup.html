@@ -1,4 +1,10 @@
-<hi>New User Sign Up</hi>
+{% extends 'base.html' %}
+
+{% block TITLE %}eShop Sign Up{% endblock TITLE %}
+
+{% block BASE_SECTION_CONTENT %}
+
+<h2>New User Sign Up</h2>
 
 <p><i>{% if error_message %} {{ error_message }} {% endif %} </i></p>
 
@@ -14,3 +20,5 @@
 </form>
 
 <p><i><a href="{% url 'login:login' %}">Already have an account? Sign in</a></i></p>
+
+{% endblock BASE_SECTION_CONTENT %}

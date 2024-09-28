@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
-{% block content %}
-<h1>Sign in</h1>
+
+{% block TITLE %}eShop Sign in{% endblock TITLE %}
+
+{% block BASE_SECTION_CONTENT %}
+
+<h2>Sign in</h2>
 
 {% if error_message %} {{error_message}} {% endif %}
 
@@ -15,4 +19,5 @@
 
 <p><i>Don't have an account? <a href="{% url 'login:sign_up' %}">Create one here.</a></i></p>
 <p><i>Forgotten your password? <a href="{% url 'login:password_reset' %}">Reset password</a></i></p>
-{% endblock content %}
+
+{% endblock BASE_SECTION_CONTENT %}

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 <div id="content">
-    {% block content %}
-
-        <a href="{% url 'home' %}">Home</a> <a href="{% url 'login:login' %}">Login</a> <a href="">Contact Us</a>
+    {% block BASE_SECTION_CONTENT %}
 
         <h1>Welcome to eShop.</h1>
 
@@ -25,5 +23,5 @@
             {% endfor %}
         </ul>
         
-    {% endblock content %}
+    {% endblock BASE_SECTION_CONTENT %}
 </div>
