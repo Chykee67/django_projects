@@ -1,4 +1,10 @@
-<head>Sections</head>
+{% extends 'base_store.html' %}
+
+{% block TITLE %}eShop store{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+
+<h5>Sections</h5>
 <ul>
     {% for section in sections %}
         <li>
@@ -7,4 +13,6 @@
     {% endfor %}
 </ul>
 
-<h2><a href="{% url 'store:trending' %}">Trending</a></h2>
+<h5><a href="{% url 'store:trending' %}">Trending</a></h5>
+
+{% endblock SECTION_CONTENT %}

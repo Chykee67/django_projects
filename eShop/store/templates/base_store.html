@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block BASE_SECTION_CONTENT %}
+
+<h3>
+    Welcome, {% if user.pk != None %}{{user}}{% endif %}
+</h3>
+
+<h4>At eShop We Are Delighted To Serve Your Shopping Needs 24/7 !!!</h4>
+
+{% block SECTION_CONTENT %}{% endblock SECTION_CONTENT %}
+
+{% endblock BASE_SECTION_CONTENT %}

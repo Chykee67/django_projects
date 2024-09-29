@@ -1,4 +1,10 @@
-<h1>{{object.description}}</h1>
+{% extends 'base_store.html' %}
+
+{% block TITLE %}eShop {{object.description|title}}{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+
+<h4>Surf the best deals on top quality {{object.description}} items </h4>
 
 <ul>
     {% for item in object.item_set.all %}
@@ -7,3 +13,5 @@
     </li>
     {% endfor %}
 </ul>
+
+{% endblock SECTION_CONTENT %}
