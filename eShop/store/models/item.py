@@ -48,9 +48,27 @@ class Item(models.Model):
         default='item',
     )
 
-    price = models.PositiveIntegerField(
-        help_text="Price of item in Naira",
-        verbose_name="Selling price",
+    retail_unit = models.CharField(
+        help_text="retailing unit",
+        max_length=40,
+        default="1 piece",
+    )
+
+    retail_unit_price = models.PositiveIntegerField(
+        help_text="Price of 1 retail unit in Naira",
+        verbose_name="Retail price",
+        default=0,
+    )
+
+    wholesale_unit = models.CharField(
+        help_text="unit for wholesale",
+        max_length=40,
+        default="1 pack",
+    )
+
+    wholesale_unit_price = models.PositiveIntegerField(
+        help_text="Price of 1 wholesale unit in Naira",
+        verbose_name="Wholesale price",
         default=0,
     )
 

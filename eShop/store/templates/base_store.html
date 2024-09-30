@@ -3,10 +3,14 @@
 {% block BASE_SECTION_CONTENT %}
 
 <h3>
-    Welcome, {% if user.pk != None %}{{user}}{% endif %}
+    Welcome, {% if user.pk != None %}{{user|title}}{% endif %}
 </h3>
 
 <h4>At eShop We Are Delighted To Serve Your Shopping Needs 24/7 !!!</h4>
+
+<h5>
+    <a href="{% url 'store:index' %}">Store Sections</a>
+</h5>
 
 {% block SECTION_CONTENT %}{% endblock SECTION_CONTENT %}
 

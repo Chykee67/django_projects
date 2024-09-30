@@ -1,0 +1,11 @@
+{% extends 'base_store.html' %}
+
+{% block TITLE %}{{item.description}}{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+<h4>
+    <a href="{% url 'store:section' item.section.description %}">{{item.section|title}}</a>
+</h4>
+<p>{{item.description|title}}</p>
+<p>{{item.retail_unit}}: {{item.retail_unit_price}}</p>
+{% endblock SECTION_CONTENT %}
