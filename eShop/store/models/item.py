@@ -48,6 +48,12 @@ class Item(models.Model):
         default='item',
     )
 
+    info = models.TextField(
+        verbose_name ='Item Info',
+        help_text='more info on the item',
+        default='add item info here',
+    )
+
     retail_unit = models.CharField(
         help_text="retailing unit",
         max_length=40,
