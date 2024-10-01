@@ -1,10 +1,19 @@
-trends = {
-    'maggi': 10,
-    'onions': 5,
-    'beans': 25,
-    'garri': 27,
-    'salt': 2,
-    'rice': 15
-}
+class greeting:
+    say = "hi"
 
-print(sorted(trends.items(), key=lambda tre: tre[1]))
+    to = "Chike"
+
+    def greet(self):
+        return f"{self.say}, {self.to}"
+
+    def new(self):
+        return f"{self.greet()}"
+
+def main():
+
+    mean = greeting()
+
+    print(mean.new())
+
+if __name__ == "__main__":
+    main()
