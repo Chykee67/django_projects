@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eShop',
     'login',
-    'usr_profile',
+    'user_profile',
     'store',
 ]
 
