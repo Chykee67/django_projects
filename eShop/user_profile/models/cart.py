@@ -13,7 +13,7 @@ class Cart(models.Model):
         on_delete=models.CASCADE,
     )
 
-    item = models.ManyToManyField(
+    items = models.ManyToManyField(
         Item,
     )
 

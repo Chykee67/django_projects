@@ -1,0 +1,25 @@
+{% extends 'base_user_profile.html' %}
+
+{% block SECTION_CONTENT %}
+<h4>
+    <p>Welcome, {{user|title}}</p>
+</h4>
+<p>
+    <a href="">Cart
+        {% if user.cart.items %}
+        ({{user.cart.items.count}})
+        {% else %}
+        (0)
+        {% endif %}
+    </a>
+</p>
+
+<p>
+    <a href="">Orders</a>
+</p>
+
+<p>
+    <a href="">Notifications</a>
+</p>
+
+{% endblock SECTION_CONTENT %}

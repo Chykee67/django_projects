@@ -12,7 +12,7 @@
         <a class="active" href="{% url 'home' %}">Home</a>
 
         {% if user.pk != None %}
-        <a href="">Profile</a>
+        <a href="{% url 'profile:index' %}">Profile</a>
         {% else %}
         <a href="{% url 'login:login' %}">Login</a>
         {% endif %}
@@ -34,7 +34,13 @@
             <ul>
                 {% if user.pk != None %}
                 <li>
-                    <a href="">My Cart</a>
+                    <a href="">Cart
+                        {% if user.cart.items %}
+                        ({{user.cart.items.count}})
+                        {% else %}
+                        (0)
+                        {% endif %}
+                    </a>
                 </li>
                 <li>
                     <a href="">Orders</a>
@@ -58,7 +64,6 @@
         {% block LOGOUT_AREA %}
 
         {% if user.pk != None %}
-        <p>{{user}}</p>
         <a href="{% url 'login:logout' %}">Logout</a>
         {% endif %}
 
