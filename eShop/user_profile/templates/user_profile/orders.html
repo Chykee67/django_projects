@@ -1,0 +1,25 @@
+{% extends 'base_user_profile.html' %}
+
+{% block SECTION_CONTENT %}
+<p>
+    <a href="">Pending Orders</a>
+</p>
+<p>
+    <a href="">Orders Awaiting Delivery</a>
+</p>
+<p>
+    <a href="">Delivered Orders</a>
+</p>
+
+<p>
+    Latest Orders
+
+    <ol>
+        {% for order in latest_orders %}
+        <li>
+            {{order}}
+        </li>
+        {% endfor %}
+    </ol>
+</p>
+{% endblock SECTION_CONTENT %}

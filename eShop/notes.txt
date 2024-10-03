@@ -302,3 +302,9 @@ MANAGERS
 QUERYSETS API ON 1686, FIELD LOOK UP API REFERENCE ON 1740
 
 DJANGO MODELADMIN CONFIGURATIONS 1022
+
+Handling forms in class-based views on p.419
+    - use this for handling updating user details in user_profile
+
+Forgot to include a date attribute for orders, can i dynamically include this at the time of creating an order?
+    or do i add it to the order model and dynamically change it at the time of placing an order?
