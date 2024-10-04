@@ -15,6 +15,7 @@ class CartView(ListView):
 class RemoveItemView(View):
     def get(self, request, item_description):
         mycart = request.user.cart
-        mycart.items.get(description=item_description).delete()
+        item = mycart.items.get(description=item_description)
+        mycart.items.remove(item)
         return HttpResponseRedirect(reverse('profile:cart'))
 
