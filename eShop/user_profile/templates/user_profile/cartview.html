@@ -1,0 +1,20 @@
+{% extends 'base_user_profile.html' %}
+
+{% block TITLE %}Cart{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+<ol>
+    {% for item in mycart_items %}
+    <li>
+        <a href="{% url 'store:item' item.description %}">{{item|title}}</a>
+        <a href="{% url 'profile:remove_from_cart' item.description %}">Remove</a>
+    </li>
+    {% empty %}
+    <p>Your Cart is empty</p>
+    <p>
+        Add some top quality items 
+        <a href="{% url 'store:index' %}">here</a>
+    </p>
+    {% endfor %}
+</ol>
+{% endblock SECTION_CONTENT %}

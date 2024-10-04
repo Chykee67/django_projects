@@ -34,7 +34,7 @@
             <ul>
                 {% if user.pk != None %}
                 <li>
-                    <a href="">Cart
+                    <a href="{% url 'profile:cart' %}">Cart
                         {% if user.cart.items %}
                         ({{user.cart.items.count}})
                         {% else %}
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">Orders</a>
+                    <a href="{% url 'profile:orders' %}">Orders</a>
                 </li>
                 <li>
                     <a href="">Notifications</a>

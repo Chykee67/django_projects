@@ -1,4 +1,4 @@
-from .index import IndexView
-from .orders import OrdersTemplateView, OrdersListView, OrderDetailView
-from .notifications import NotificationsListView, NotificationDetailView
-from .cart import CartView
+from .indexview import IndexView
+from .orderviews import OrdersTemplateView, OrdersListView, OrderDetailView
+from .notificationviews import NotificationsListView, NotificationDetailView
+from .cartviews import CartView, RemoveItemView
