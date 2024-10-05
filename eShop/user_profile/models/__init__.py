@@ -1,3 +1,3 @@
-from .order import Order
-from .cart import Cart
-from .notification import Notification
+from .ordermodel import Order
+from .cartmodel import Cart
+from .notificationmodel import Notification

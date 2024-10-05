@@ -13,7 +13,7 @@ from login.models import User
 @method_decorator(login_not_required, name="dispatch")
 class MySignupView(View):
     def get(self, request):
-        return render(request, 'login/signup.html', {
+        return render(request, 'login/mysignupview.html', {
             'form': SignUpForm(),
         })
 
@@ -32,14 +32,14 @@ class MySignupView(View):
                         password=form.cleaned_data['password1']
                     )
 
-                    return HttpResponseRedirect(reverse('usr_profile:index', args=(new_user,)))
+                    return HttpResponseRedirect(reverse('login:login'))
                 else:
-                    return render(request, 'login/signup.html', {
+                    return render(request, 'login/mysignupview.html', {
                         'form': SignUpForm(),
                         'error_message': 'Password mismatch. Please confirm password!'
                     })
             else:
-                return render(request, 'login/signup.html', {
+                return render(request, 'login/mysignupview.html', {
                     'form': SignUpForm(),
                     'error_message': 'This email is already registered',
                 })

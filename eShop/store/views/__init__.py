@@ -1,4 +1,4 @@
-from .trending import TrendingView
-from .index import IndexView
-from .sections import SectionView
-from .items import ItemView, AddToCartView
+from .storetrendingviews import TrendingView
+from .storeindexview import IndexView
+from .storesectionsviews import SectionView
+from .storeitemsviews import ItemView, AddToCartView

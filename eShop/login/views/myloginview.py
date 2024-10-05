@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_not_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 
 
 from login.forms import SignInForm
@@ -14,9 +13,8 @@ from login.forms import SignInForm
 class MyLoginView(View):
 
     def get(self, request):
-        return render(request, 'login/signin.html', {
+        return render(request, 'login/myloginview.html', {
             'form': SignInForm(),
-            'session_user': request.session.get('user', False),
         })
 
     def post(self, request):
@@ -31,7 +29,7 @@ class MyLoginView(View):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                return render(request, 'login/signin.html', {
+                return render(request, 'login/myloginview.html', {
                     'form': SignInForm(),
                     'error_message': 'Incorrect email or password',
                 })

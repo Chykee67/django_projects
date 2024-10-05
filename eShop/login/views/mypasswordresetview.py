@@ -14,7 +14,7 @@ from login.models import User
 class MyPasswordResetView(View):
 
     def get(self, request):
-        return render(request, 'login/password_reset.html', {
+        return render(request, 'login/mypasswordresetview.html', {
             'form': ForgottenPasswordForm(),
         })
     
@@ -28,7 +28,7 @@ class MyPasswordResetView(View):
             try:
                 user = User.objects.get(email=email)
             except(KeyError, User.DoesNotExist):
-                return render(request, 'login/password_reset.html', {
+                return render(request, 'login/mypasswordresetview.html', {
                     'form': ForgottenPasswordForm(),
                     'error_message': 'This email is not registered',
                 })
@@ -38,7 +38,7 @@ class MyPasswordResetView(View):
                     user.save()
                     return HttpResponseRedirect(reverse('login:login'))
                 else:
-                    return render(request, 'login/password_reset.html', {
+                    return render(request, 'login/mypasswordresetview.html', {
                         'form': ForgottenPasswordForm(),
                         'error_message': 'Password Mismatch'
                     })
