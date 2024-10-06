@@ -6,8 +6,15 @@
 <ol>
     {% for item in mycart_items %}
     <li>
-        <a href="{% url 'store:item' item.description %}">{{item|title}}</a>
-        <a href="{% url 'profile:remove_from_cart' item.description %}">Remove</a>
+        <p>
+            <a href="{% url 'store:item' item.description %}">{{item|title}}</a>
+        </p>
+        <p>
+            <a href="{% url 'profile:remove_from_cart' item.description %}">Remove From Cart</a>
+        </p>
+        <p>
+            <a href="{% url 'profile:confirm_order' item.description %}">Checkout</a>
+        </p>
     </li>
     {% empty %}
     <p>Your Cart is empty</p>

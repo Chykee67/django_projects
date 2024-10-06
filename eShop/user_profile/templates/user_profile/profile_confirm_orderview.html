@@ -1,0 +1,36 @@
+{% extends 'base_profile_template.html' %}
+
+{% block TITLE %}Confirm Order{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+
+<h4>{{item.description|title}}</h4>
+
+<form action="{% url 'profile:confirm_order' item.description %}" method="post">
+
+    {% csrf_token %}
+
+    <p>
+        <label for="purchase_details">Unit</label>
+        <select name="purchase_details" id="purchase_details">
+            <option value="{{item.retail_unit}},{{item.retail_unit_price}}">
+                {{item.retail_unit}}: {{item.retail_unit_price}}
+            </option>
+            <option value="{{item.wholesale_unit}},{{item.wholesale_unit_price}}">
+                {{item.wholesale_unit}}: {{item.wholesale_unit_price}}
+            </option>
+        </select>
+    </p>
+
+    <p>
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" value=1 />
+    </p>
+
+    <p class="button">
+        <button type="submit">Confirm Order</button>
+    </p>
+
+</form>
+
+{% endblock SECTION_CONTENT %}

@@ -41,7 +41,7 @@ class Order(models.Model):
         on_delete=models.PROTECT,
     )
 
-    item = models.ForeignKey(
+    item = models.ForeignKey( #would a manytomanyfield worked as well?
         Item,
         on_delete=models.PROTECT,
     )
@@ -84,4 +84,4 @@ class Order(models.Model):
             return "Uncertain"
 
     def __str__(self):
-        return f"{self.item} {self.unit}x{self.quantity}: {self.charge()}"
+        return f"{self.item.description.title()} {self.unit} X{self.quantity}: {self.charge()}"
