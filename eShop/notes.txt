@@ -308,3 +308,8 @@ Handling forms in class-based views on p.419
 
 Forgot to include a date attribute for orders, can i dynamically include this at the time of creating an order?
     or do i add it to the order model and dynamically change it at the time of placing an order?
+
+Next steps:
+    tokens
+    messaging in-app
+    secutity features in django
