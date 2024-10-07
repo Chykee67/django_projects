@@ -1,0 +1,17 @@
+{% extends 'base_profile_template.html' %}
+
+{% block TITLE %}{{orders_list|title}} Orders{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+
+<ol>
+    {% for order in orders %}
+
+    <li>
+        <a href="">{{order|title}}</a>
+    </li>
+
+    {% endfor %}
+</ol>
+
+{% endblock SECTION_CONTENT %}

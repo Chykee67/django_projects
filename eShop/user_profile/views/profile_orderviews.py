@@ -18,18 +18,25 @@ class OrdersTemplateView(TemplateView):
         context['latest_orders'] = Order.orders.filter(user=self.request.user)
         return context
 
-class OrdersListView(ListView):
-    ...
+class OrdersListView(View):
+
+    def get(self, request, orders_list):
+        if orders_list == 'pending':
+            orders = request.user.order_set.pending()
+        elif orders_list == 'paid_for':
+            orders = request.user.order_set.paid_for()
+        elif orders_list == 'delivered':
+            orders = request.user.order_set.delivered()
+        else:
+            orders = 'invalid order query'
+        
+        return render(request, 'user_profile/profile_orders_listview.html', {
+            'orders': orders,
+            'orders_list': orders_list,
+        })
 
 class OrderDetailView(DetailView):
     ...#Stopped at 416
-
-class CreateOrderView(View):
-    def get(self, request):
-        return render(request, 'user_profile/profile_create_orderview.html')
-
-    def post(self, request):
-        ...
 
 class ConfirmOrderView(View):
     
