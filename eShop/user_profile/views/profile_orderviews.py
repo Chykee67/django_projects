@@ -35,8 +35,11 @@ class OrdersListView(View):
             'orders_list': orders_list,
         })
 
-class OrderDetailView(DetailView):
-    ...#Stopped at 416
+class OrderDetailView(View):
+    def get(self, request, order_id):
+        return render(request, 'user_profile/profile_order_detailsview.html', {
+            'order': request.user.order_set.get(id=order_id),
+        })
 
 class ConfirmOrderView(View):
     

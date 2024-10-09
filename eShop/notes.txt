@@ -310,9 +310,21 @@ Forgot to include a date attribute for orders, can i dynamically include this at
     or do i add it to the order model and dynamically change it at the time of placing an order?
 
 Next steps:
+    user permissions pp.526
     tokens
     messaging in-app
     secutity features in django
     uploading images and other fields
     profile picture
     reviews and suggestions
+
+REQUEST AND RESPONSE OBJECTS 1838
+
+DJANGO FILE UPLOADS 284
+- binding uploaded files to a form (1494)
+- uploadedfile ref 1462
+- writing custom file upload handlers 1464
+- file upload settings 1927
+- how to add AJAX widgets to django app
+- FILE HANDLING REFERENCE 1456
+- MEDIA_ROOT SETTINGS 1900

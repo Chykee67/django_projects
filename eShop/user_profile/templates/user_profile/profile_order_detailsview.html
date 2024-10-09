@@ -1,0 +1,20 @@
+{% extends 'base_profile_template.html' %}
+
+{% block TITLE %}Order details{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+<p>
+    <a href="{% url 'store:item' order.item.description %}">
+        {{order.item|title}}
+    </a>
+</p>
+<p>
+    {{order.unit}} X{{order.quantity}}
+</p>
+<p>
+    {{order.charge}}
+</p>
+<p>
+    {{order.status}}
+</p>
+{% endblock SECTION_CONTENT %}

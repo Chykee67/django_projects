@@ -17,7 +17,7 @@
     <ol>
         {% for order in latest_orders %}
         <li>
-            {{order|title}}
+            <a href="{% url 'profile:order_details' order.id %}">{{order|title}}</a>
             status: {{order.status|title}}
         </li>
         {% endfor %}
