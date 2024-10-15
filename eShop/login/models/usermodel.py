@@ -86,7 +86,12 @@ class User(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
 
-    objects = UserManager()
+    users = UserManager()
+
+    profile_photo = models.ImageField(
+        upload_to="profile_photos/",
+        blank=True,
+    )
 
     USERNAME_FIELD = "email"
 
