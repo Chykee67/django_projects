@@ -4,6 +4,7 @@
 <h4>
     <p>Welcome, {{user|title}}</p>
 </h4>
+{{user.profile_photo}}
 <p>
     <a href="{% url 'profile:cart' %}">Cart
         {% if user.cart.items %}
