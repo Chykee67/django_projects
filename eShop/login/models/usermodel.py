@@ -128,6 +128,17 @@ class User(AbstractBaseUser):
 
         return True
 
+    def get_shipping_address(self):
+        if self.street_address and self.city_of_residence:
+            return f"""
+            {self.street_address},
+            {self.city_of_residence},
+            {self.state_of_residence},
+            {self.country_of_residence}.
+            """
+        else:
+            return False
+
     @property
     def is_staff(self):
 

@@ -65,6 +65,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -135,4 +136,4 @@ AUTH_USER_MODEL = "login.User"
 
 MEDIA_ROOT = "site_media/"
 
-MEDIA_URL = "site_media/"
+MEDIA_URL = "/media/"

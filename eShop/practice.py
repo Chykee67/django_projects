@@ -1,8 +1,8 @@
+def greetings():
+    return f"""
+    good morning,
+    great afternoon,
+    hey madam.
+    """
 
-
-def main():
-
-    print(type(b"hello"))
-
-if __name__ == "__main__":
-    main()
+print(greetings())
