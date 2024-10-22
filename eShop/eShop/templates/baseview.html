@@ -43,7 +43,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'profile:orders' %}">Orders</a>
+                    <a href="{% url 'profile:orders' %}">Orders
+                        {% if user.order_set.pending %}
+                        ({{user.order_set.pending.count}})
+                        {% else %}
+                        (0)
+                        {% endif %}
+                    </a>
                 </li>
                 <li>
                     <a href="">Notifications</a>

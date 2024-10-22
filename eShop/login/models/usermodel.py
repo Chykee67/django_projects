@@ -86,7 +86,12 @@ class User(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
 
-    objects = UserManager()
+    users = UserManager()
+
+    profile_photo = models.ImageField(
+        upload_to="profile_photos/",
+        blank=True,
+    )
 
     USERNAME_FIELD = "email"
 
@@ -122,6 +127,17 @@ class User(AbstractBaseUser):
         #Does the user have the permission to view the app with app_label arg
 
         return True
+
+    def get_shipping_address(self):
+        if self.street_address and self.city_of_residence:
+            return f"""
+            {self.street_address.rstrip(',')},
+            {self.city_of_residence.rstrip(',')},
+            {self.state_of_residence.rstrip(',')},
+            {self.country_of_residence.rstrip(',')}.
+            """
+        else:
+            return False
 
     @property
     def is_staff(self):

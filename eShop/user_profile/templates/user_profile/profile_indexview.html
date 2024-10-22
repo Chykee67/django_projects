@@ -3,7 +3,17 @@
 {% block SECTION_CONTENT %}
 <h4>
     <p>Welcome, {{user|title}}</p>
+    <p>
+        <img class="Avatar secondary-content" src="{{user.profile_photo.url}}" width="100px" height="100px" />
+    </p>
 </h4>
+
+<p>
+    {% if user.get_shipping_address %}
+    Shipping Address: {{user.get_shipping_address|title}}
+    {% endif %}
+</p>
+
 <p>
     <a href="{% url 'profile:cart' %}">Cart
         {% if user.cart.items %}
@@ -15,11 +25,21 @@
 </p>
 
 <p>
-    <a href="{% url 'profile:orders' %}">Orders</a>
+    <a href="{% url 'profile:orders' %}">Orders
+        {% if user.order_set.pending %}
+        ({{user.order_set.pending.count}})
+        {% else %}
+        (0)
+        {% endif %}
+    </a>
 </p>
 
 <p>
     <a href="">Notifications</a>
+</p>
+
+<p>
+    <a href="{% url 'profile:edit_profile' %}">Edit Profile</a>
 </p>
 
 {% endblock SECTION_CONTENT %}
