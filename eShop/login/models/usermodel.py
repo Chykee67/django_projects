@@ -131,10 +131,10 @@ class User(AbstractBaseUser):
     def get_shipping_address(self):
         if self.street_address and self.city_of_residence:
             return f"""
-            {self.street_address},
-            {self.city_of_residence},
-            {self.state_of_residence},
-            {self.country_of_residence}.
+            {self.street_address.rstrip(',')},
+            {self.city_of_residence.rstrip(',')},
+            {self.state_of_residence.rstrip(',')},
+            {self.country_of_residence.rstrip(',')}.
             """
         else:
             return False

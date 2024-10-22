@@ -10,7 +10,7 @@
 
 <p>
     {% if user.get_shipping_address %}
-    Shipping Address: {{user.get_shipping_address}}
+    Shipping Address: {{user.get_shipping_address|title}}
     {% endif %}
 </p>
 
@@ -25,7 +25,13 @@
 </p>
 
 <p>
-    <a href="{% url 'profile:orders' %}">Orders</a>
+    <a href="{% url 'profile:orders' %}">Orders
+        {% if user.order_set.pending %}
+        ({{user.order_set.pending.count}})
+        {% else %}
+        (0)
+        {% endif %}
+    </a>
 </p>
 
 <p>

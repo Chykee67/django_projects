@@ -6,6 +6,6 @@ from login.models import User
 class Edit_ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["email", "first_name", "last_name", "date_of_birth", "about_user",
+        fields = ["first_name", "last_name", "about_user",
         "country_of_residence", "state_of_residence", "city_of_residence", "street_address"
         ]
