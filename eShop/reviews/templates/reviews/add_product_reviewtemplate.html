@@ -1,0 +1,17 @@
+{% extends 'base_reviewstemplate.html' %}
+
+{% block SECTION_CONTENT %}
+
+<form action="{% url 'reviews:add_product_review' item_description %}" method="post">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button type="submit">
+        Submit
+    </button>
+
+</form>
+
+{% endblock SECTION_CONTENT %}

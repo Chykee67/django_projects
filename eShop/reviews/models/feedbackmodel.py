@@ -1,6 +1,7 @@
 from django.db import models
 
 from login.models import User
+from store.models import Item
 
 
 class ProductReviewsQuerySet(models.QuerySet):
@@ -64,6 +65,12 @@ class Feedback(models.Model):
 
     review = models.TextField(
         max_length=300,
+    )
+
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        null=True,
     )
 
     feedbacks = models.Manager()

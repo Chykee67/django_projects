@@ -17,4 +17,9 @@
 <p>
     {{order.status}}
 </p>
+
+<p>
+    <a href="{% url 'reviews:add_product_review' order.item.description %}">Add Review</a>
+</p>
+
 {% endblock SECTION_CONTENT %}

@@ -29,6 +29,7 @@ urlpatterns = [
     path('login/', include("login.urls")),
     path('store/', include('store.urls')),
     path('profile/', include('user_profile.urls')),
+    path("reviews/", include('reviews.urls')),
 ]
 
 if settings.DEBUG:

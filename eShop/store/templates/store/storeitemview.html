@@ -12,4 +12,16 @@
 <p>
     <a href="{% url 'store:add_to_cart' item.description %}">Add to cart</a>
 </p>
+
+<p>
+    <p>Reviews</p>
+    <ol>
+        {% for feedback in item.feedback_set.all %}
+        <li>
+            {{feedback.user|title}}: {{feedback}}
+        </li>
+        {% endfor %}
+    </ol>
+</p>
+
 {% endblock SECTION_CONTENT %}
