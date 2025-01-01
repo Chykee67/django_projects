@@ -1,0 +1,27 @@
+{% extends 'base_profile_template.html' %}
+
+{% block TITLE %}Cart{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+<ol>
+    {% for item in mycart_items %}
+    <li>
+        <p>
+            <a href="{% url 'store:item' item.description %}">{{item|title}}</a>
+        </p>
+        <p>
+            <a href="{% url 'profile:remove_from_cart' item.description %}">Remove From Cart</a>
+        </p>
+        <p>
+            <a href="{% url 'profile:confirm_order' item.description %}">Checkout</a>
+        </p>
+    </li>
+    {% empty %}
+    <p>Your Cart is empty</p>
+    <p>
+        Add some top quality items 
+        <a href="{% url 'store:index' %}">here</a>
+    </p>
+    {% endfor %}
+</ol>
+{% endblock SECTION_CONTENT %}

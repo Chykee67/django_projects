@@ -1,0 +1,27 @@
+{% extends "baseview.html" %}
+
+<div id="content">
+    {% block BASE_SECTION_CONTENT %}
+
+        <h1>Welcome to eShop.</h1>
+
+        <p>
+            Your one stop destination for <b>best quality groceries</b>.
+        </p>
+
+        <h2>Be sure to check out our most visited sections for the week!!</h2>
+        <p>
+            <b>
+                <a href="{% url 'store:index' %}">Sections</a>
+            </b>
+        </p>
+        <ul>
+            {% for section in sections %}
+            <li>
+                <a href="{% url 'store:section' section.description %}"><b>{{section.description|title}}</b></a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+    {% endblock BASE_SECTION_CONTENT %}
+</div>

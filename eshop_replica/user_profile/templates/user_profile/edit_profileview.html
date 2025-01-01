@@ -1,0 +1,20 @@
+{% extends "base_profile_template.html" %}
+
+{% block TITLE %}Edit Profile{% endblock TITLE %}
+
+{% block SECTION_CONTENT %}
+<p>
+    <a href="{% url 'profile:upload_profile_photo' %}">
+        {% if user.profile_photo %}
+        <img src="{{user.profile_photo.url}}" height="150px" width="150px" />
+        {% else %}
+        Upload A Profile photo
+        {% endif %}
+    </a>
+</p>
+<form action="{% url 'profile:edit_profile' %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Submit Changes</button>
+</form>
+{% endblock SECTION_CONTENT %}

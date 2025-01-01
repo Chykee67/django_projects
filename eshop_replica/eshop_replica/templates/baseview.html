@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block TITLE %}eShop{% endblock TITLE %}</title>
+</head>
+
+<body>
+    <div class="topnav">
+
+        {% block NAV_BAR %}
+
+        <a class="active" href="{% url 'home' %}">Home</a>
+
+        {% if user.pk != None %}
+        <a href="{% url 'profile:index' %}">Profile</a>
+        {% else %}
+        <a href="{% url 'login:login' %}">Login</a>
+        {% endif %}
+
+        <a href="">Contact Us</a>
+
+        {% endblock NAV_BAR %}
+    </div>
+
+    <div id="base_section_content">
+        {% block BASE_SECTION_CONTENT %}{% endblock BASE_SECTION_CONTENT %}
+    </div>
+
+    <div id="sidebar">
+        {% block SIDEBAR %}
+        <h3>
+            <b>Quick links</b>
+        </h3>
+            <ul>
+                {% if user.pk != None %}
+                <li>
+                    <a href="{% url 'profile:cart' %}">Cart
+                        {% if user.cart.items %}
+                        ({{user.cart.items.count}})
+                        {% else %}
+                        (0)
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'profile:orders' %}">Orders
+                        {% if user.order_set.pending %}
+                        ({{user.order_set.pending.count}})
+                        {% else %}
+                        (0)
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="">Notifications</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'store:trending' %}">Trending Sections</a>
+                </li>
+                <li>
+                    <a href="">Trending Items</a>
+                </li>
+            </ul>
+        {% endblock SIDEBAR %}
+    </div>
+
+    <div id="logout_area">
+
+        {% block LOGOUT_AREA %}
+
+        {% if user.pk != None %}
+        <a href="{% url 'login:logout' %}">Logout</a>
+        {% endif %}
+
+        {% endblock LOGOUT_AREA %}
+    </div>
+
+</body>
+</html>
