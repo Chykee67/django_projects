@@ -2,6 +2,7 @@ from datetime import date
 
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import Group, Permission
 
 
 class UserManager(BaseUserManager):
@@ -81,6 +82,10 @@ class User(AbstractBaseUser):
         max_length=300,
         blank=True,
         )
+
+    groups = models.ManyToManyField(Group)
+
+    permissions = models.ManyToManyField(Permission)
 
     is_active = models.BooleanField(default=True)
 
