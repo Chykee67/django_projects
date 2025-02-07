@@ -7,9 +7,13 @@
 <h5>Surf The Different Sections Below To Find Best Quality Items and Amazing Deals</h5>
 <ul>
     {% for section in sections %}
+        {% if adult_tag in section.tags.all and adult_perms == 0 %}
+        <li>Adult content hidden</li>
+        {% else %}
         <li>
             <a href="{% url 'store:section' section.description %}">{{section.description|title}}</a>
         </li>
+        {% endif %}
     {% endfor %}
 </ul>
 

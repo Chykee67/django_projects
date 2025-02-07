@@ -1,6 +1,7 @@
 from django.db import models
 
 from .floormodel import Floor
+from .tagmodel import Tag
 
 class Section(models.Model):
     floor = models.ForeignKey(
@@ -15,6 +16,8 @@ class Section(models.Model):
         help_text="Title of mall section",
         verbose_name="Section",
     )
+
+    tags = models.ManyToManyField(Tag)
 
     trend = models.IntegerField(
         default=0,
